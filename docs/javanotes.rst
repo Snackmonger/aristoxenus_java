@@ -20,7 +20,7 @@ Java also lacks operator overloading of any sort. This means that certain semant
 Python are unavailable to us in Java. Instead, we must call methods (often static methods) borrowed from classes,
 which often must be imported. A few examples:
 
-We often use list comprehensions instead of ``map``, ``filter``, and ``reduce``.
+In python, we often use list comprehensions instead of ``map``, ``filter``, and ``reduce``.
 
 .. code-block:: python
 
@@ -29,11 +29,9 @@ We often use list comprehensions instead of ``map``, ``filter``, and ``reduce``.
     SHARPS: tuple[str, ...] = tuple(note + SHARP_SYMBOL for note in NATURALS
                        if note not in HALFSTEPS)
 
-    BINOMIALS: tuple[str, ...] = tuple(sharp + BINOMIAL_DIVIDER_SYMBOL + flat
-                          for flat in FLATS for sharp in SHARPS
-                          if FLATS.index(flat) == SHARPS.index(sharp))
+    BINOMIALS: tuple[str, ...] = tuple(sharp + BINOMIAL_DIVIDER_SYMBOL + FLATS[SHARPS.index(sharp)] for sharp in SHARPS)
 
-We call the ``of`` method on the imported ``List`` class to create an immutable list. The ``List`` class is really just an interface, so it is the underlying type of array that determines the list's mutability.
+In java, we call the ``of`` method on the imported ``List`` class to create an immutable list. The ``List`` class is really just an interface, so it is the underlying type of array that determines the list's mutability.
     
 .. code-block:: java
 
@@ -54,7 +52,7 @@ The stream() method of the list ``NATURALS`` returns a Stream object, which supp
         .collect(Collectors.toList())
     ;
 
-Notice that the way we access an item in a list in Python (``list[index]``) does not work in Java because the ``[]`` operator cannot be overloaded. Instead we call the list's ``get`` method, which accepts an index as parameter.
+Note also that the way we access an item in a list in Python (``list[index]``) does not work in Java because the ``[]`` operator cannot be overloaded. Instead we call the list's ``get`` method, which accepts an index as parameter.
 
 Lambda Expressions
 ==================
