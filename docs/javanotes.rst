@@ -21,6 +21,7 @@ Python are unavailable to us in Java. Instead, we must call methods (often stati
 which often must be imported. A few examples:
 
 .. code-block:: Python
+
     :caption: We often use list comprehensions instead of ``map``, ``filter``, and ``reduce``.
 
     ACCIDENTAL_SYMBOLS: list[str] = [SHARP_SYMBOL, FLAT_SYMBOL]
@@ -34,11 +35,13 @@ which often must be imported. A few examples:
 
 
 .. code-block:: Java
+
     :caption: We call the ``of`` method on the imported ``List`` class to create an immutable list. The ``List`` class is really just an interface, so it is the underlying type of array that determines the list's mutability.
     
     public static final List<String> ACCIDENTAL_SYMBOLS = List.of(SHARP_SYMBOL, FLAT_SYMBOL);
 
 .. code-block:: Java
+
     :caption: The stream() method of the list ``NATURALS`` returns a Stream object, which supplies ``map`` and ``filter``. Then, the stream's ``collect`` method supplies the ``toList`` static method from the ``Collectors`` class to organize the stream into a ``List`` object.
     :linenos: 
     :emphasize-lines: 1, 9
@@ -64,16 +67,19 @@ Java's lambda syntax is very succinct. You can see a few examples in the code ab
 Unlike Python, lambda expressions can contain conditional pathways.
 
 .. code-block:: Java
+
     :caption: Lambda can have an empty parameter:
 
     () -> System.out.println("Hello")
 
 .. code-block:: Java
+
     :caption: Lambda can have multiple parameters:
 
     () -> System.out.println("Hello")
 
 .. code-block:: Java
+
     :caption: Lambda can have a code block as the expression
 
     (int i) -> {
@@ -82,6 +88,7 @@ Unlike Python, lambda expressions can contain conditional pathways.
     }
 
 .. code-block:: Java
+
     :caption: Lambda can have a condition in a code block:
 
     (int i) -> {
@@ -99,6 +106,7 @@ Ternary Operator
 A lambda could also be made more succinct by using the ternary assignment operators ``?`` (if/true) and ``:`` (elsefalse), which are, however, not exclusive to lambda expressions.
 
 .. code-block:: Java
+
     :caption: Ternary assignment operators make succinct conditions
 
     int y = (x == 1) ? 61: 90; 
@@ -106,6 +114,7 @@ A lambda could also be made more succinct by using the ternary assignment operat
 This code means "let y be equal to 61 if x==1, else let y be equal to 90". In Python, this looks like:
 
 .. code-block:: Python
+    
     :caption: Ternary assignment operator
 
     y: int = 61 if x ==1 else 90
