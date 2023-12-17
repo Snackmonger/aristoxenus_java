@@ -20,6 +20,7 @@ Java also lacks operator overloading of any sort. This means that certain semant
 Python are unavailable to us in Java. Instead, we must call methods (often static methods) borrowed from classes,
 which often must be imported. A few examples:
 
+We often use list comprehensions instead of ``map``, ``filter``, and ``reduce``.
 
 .. code-block:: python
 
@@ -32,15 +33,15 @@ which often must be imported. A few examples:
                           for flat in FLATS for sharp in SHARPS
                           if FLATS.index(flat) == SHARPS.index(sharp))
 
-
+We call the ``of`` method on the imported ``List`` class to create an immutable list. The ``List`` class is really just an interface, so it is the underlying type of array that determines the list's mutability.
+    
 .. code-block:: java
 
     public static final List<String> ACCIDENTAL_SYMBOLS = List.of(SHARP_SYMBOL, FLAT_SYMBOL);
 
-
+The stream() method of the list ``NATURALS`` returns a Stream object, which supplies ``map`` and ``filter``. Then, the stream's ``collect`` method supplies the ``toList`` static method from the ``Collectors`` class to organize the stream into a ``List`` object.
+    
 .. code-block:: java
-    :linenos: 
-    :emphasize-lines: 1, 9
 
     public static final List<String> SHARPS = NATURALS.stream()
         .filter(i -> ! HALFSTEPS.containsKey(i))
@@ -53,9 +54,7 @@ which often must be imported. A few examples:
         .collect(Collectors.toList())
     ;
 
-
 Notice that the way we access an item in a list in Python (``list[index]``) does not work in Java because the ``[]`` operator cannot be overloaded. Instead we call the list's ``get`` method, which accepts an index as parameter.
-
 
 Lambda Expressions
 ==================
@@ -63,30 +62,30 @@ Lambda Expressions
 Java's lambda syntax is very succinct. You can see a few examples in the code above, where the ``->`` operator separates the lambda parameter(s) from the lambda expression.
 Unlike Python, lambda expressions can contain conditional pathways.
 
+Lambda can have an empty parameter:
 
 .. code-block:: java 
-    :caption: Lambda can have an empty parameter:
 
    () -> System.out.println("Hello")
 
+Lambda can have multiple parameters:
 
 .. code-block:: java
-    :caption: Lambda can have multiple parameters:
-
+ 
     () -> System.out.println("Hello")
 
+Lambda can have a code block as the expression
 
 .. code-block:: java
-    :caption: Lambda can have a code block as the expression
 
     (int i) -> {
     System.out.println("Hello");
     return i;
     }
 
+Lambda can have a condition in a code block:
 
 .. code-block:: java
-    :caption: Lambda can have a condition in a code block:
 
     (int i) -> {
     if (i <= 7) {
@@ -103,15 +102,11 @@ Ternary Operator
 A lambda could also be made more succinct by using the ternary assignment operators ``?`` (if/true) and ``:`` (elsefalse), which are, however, not exclusive to lambda expressions.
 
 .. code-block:: java
-    :caption: Ternary assignment operators make succinct conditions
 
     int y = (x == 1) ? 61: 90; 
 
-
 This code means "let y be equal to 61 if x==1, else let y be equal to 90". In Python, this looks like:
 
-
 .. code-block:: python
-    :caption: Ternary assignment operator
 
     y: int = 61 if x ==1 else 90
