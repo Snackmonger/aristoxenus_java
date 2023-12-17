@@ -22,7 +22,6 @@ which often must be imported. A few examples:
 
 
 .. code-block:: python
-    :caption: We often use list comprehensions instead of ``map``, ``filter``, and ``reduce``.
 
     ACCIDENTAL_SYMBOLS: list[str] = [SHARP_SYMBOL, FLAT_SYMBOL]
 
@@ -35,13 +34,11 @@ which often must be imported. A few examples:
 
 
 .. code-block:: java
-    :caption: We call the ``of`` method on the imported ``List`` class to create an immutable list. The ``List`` class is really just an interface, so it is the underlying type of array that determines the list's mutability.
-    
+
     public static final List<String> ACCIDENTAL_SYMBOLS = List.of(SHARP_SYMBOL, FLAT_SYMBOL);
 
 
 .. code-block:: java
-    :caption: The stream() method of the list ``NATURALS`` returns a Stream object, which supplies ``map`` and ``filter``. Then, the stream's ``collect`` method supplies the ``toList`` static method from the ``Collectors`` class to organize the stream into a ``List`` object.
     :linenos: 
     :emphasize-lines: 1, 9
 
@@ -68,7 +65,6 @@ Unlike Python, lambda expressions can contain conditional pathways.
 
 
 .. code-block:: java 
-
     :caption: Lambda can have an empty parameter:
 
    () -> System.out.println("Hello")
