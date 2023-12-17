@@ -68,9 +68,9 @@ Unlike Python, lambda expressions can contain conditional pathways.
 
 
 .. code-block:: java
-    :caption: Lambda can have an empty parameter:
+   :caption: Lambda can have an empty parameter:
 
-    () -> System.out.println("Hello")
+   () -> System.out.println("Hello")
 
 
 .. code-block:: java
