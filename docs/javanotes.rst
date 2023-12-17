@@ -67,7 +67,9 @@ Java's lambda syntax is very succinct. You can see a few examples in the code ab
 Unlike Python, lambda expressions can contain conditional pathways.
 
 
-.. code-block:: java :caption: Lambda can have an empty parameter:
+.. code-block:: java 
+
+    :caption: Lambda can have an empty parameter:
 
    () -> System.out.println("Hello")
 
