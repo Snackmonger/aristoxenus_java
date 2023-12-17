@@ -56,6 +56,7 @@ which often must be imported. A few examples:
         .collect(Collectors.toList())
     ;
 
+
 Notice that the way we access an item in a list in Python (``list[index]``) does not work in Java because the ``[]`` operator cannot be overloaded. Instead we call the list's ``get`` method, which accepts an index as parameter.
 
 
@@ -109,7 +110,9 @@ A lambda could also be made more succinct by using the ternary assignment operat
 
     int y = (x == 1) ? 61: 90; 
 
+
 This code means "let y be equal to 61 if x==1, else let y be equal to 90". In Python, this looks like:
+
 
 .. code-block:: python
     :caption: Ternary assignment operator
