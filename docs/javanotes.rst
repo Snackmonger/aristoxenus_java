@@ -57,8 +57,8 @@ Note also that the way we access an item in a list in Python (``list[index]``) d
 Lambda Expressions
 ==================
 
-Java's lambda syntax is very succinct. You can see a few examples in the code above, where the ``->`` operator separates the lambda parameter(s) from the lambda expression.
-Unlike Python, lambda expressions can contain conditional pathways.
+Java's lambda syntax is very succinct. You can see a few examples in the code above, where the ``->`` operator separates the lambda parameter(s) from the lambda body.
+In python, lambda can only contain a ternary condition. Since java
 
 Lambda can have an empty parameter:
 
@@ -70,7 +70,7 @@ Lambda can have multiple parameters:
 
 .. code-block:: java
  
-    () -> System.out.println("Hello")
+    (p1, p2) -> System.out.println("Hello")
 
 Lambda can have a code block as the expression
 
@@ -88,16 +88,18 @@ Lambda can have a condition in a code block:
     (int i) -> {
     if (i <= 7) {
         System.out.println("Hello");
+        return i;
     }
     else {
-    return i;
+        System.out.println("Goodbye");
+        return i;
     }
 
 
 Ternary Operator
 ================
 
-A lambda could also be made more succinct by using the ternary assignment operators ``?`` (if/true) and ``:`` (elsefalse), which are, however, not exclusive to lambda expressions.
+A lambda could also be made more succinct by using the ternary assignment operators ``?`` (if/true) and ``:`` (else/false), which are, however, not exclusive to lambda expressions.
 
 .. code-block:: java
 

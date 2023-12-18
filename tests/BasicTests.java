@@ -1,8 +1,8 @@
 package tests;
 import src.aristoxenus.Constants;
-import src.aristoxenus.NomenclatureFunctions;
+import src.aristoxenus.Nomenclature;
 
-public class ConstantTests {
+public class BasicTests {
     
 
     public static void main(String[] args) {
@@ -13,6 +13,8 @@ public class ConstantTests {
          */
 
          test_constants();
+         test_nomenclature();
+         test_conversions();
     }
 
     /**
@@ -37,11 +39,20 @@ public class ConstantTests {
         * Test that the conversion functions generate the expected values.
         */
     public static void test_conversions() {
-        System.out.println("\nEnharmonic decoder table: ");
-        System.out.println(Constants.ACCIDENTAL_TYPES);
+    
     }
 
+    public static void test_nomenclature() {
+        System.out.println("\nChromatic scale, binomial: ");
+        System.out.println(Nomenclature.chromatic(Constants.BINOMIALS));
+        System.out.println("\nChromatic scale, sharp: ");
+        System.out.println(Nomenclature.chromatic(Constants.SHARPS));
+        System.out.println("\nChromatic scale, flat: ");
+        System.out.println(Nomenclature.chromatic(Constants.FLATS));
+        System.out.println("\nEnharmonic decoder table: ");
+        System.out.println(Nomenclature.enharmonic_decoder());
 
+    }
 
 
 
