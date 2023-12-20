@@ -17,7 +17,7 @@ public class Constants {
     public static final int NOTES = 7;
     public static final int SHARP_VALUE = 1;
     public static final int FLAT_VALUE = -1;
-    public static final int NUMBER_OF_OCTAVES = 9;
+    public static final int NUMBER_OF_OCTAVES = 8;
     public static final int OCTAVE_EQUIVALENCE_FACTOR = 2;
     public static final int FREQUENCY_DECIMAL_LIMITER = 3;
     public static final int CENTRAL_REFERENCE_FREQUENCY = 440;

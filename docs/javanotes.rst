@@ -110,3 +110,16 @@ This code means "let y be equal to 61 if x==1, else let y be equal to 90". In Py
 .. code-block:: python
 
     y: int = 61 if x ==1 else 90
+
+
+Bitwise and Boolean Operators
+=============================
+
+Note: Java has bitwise & and boolean && (likewise, | ||).
+
+We can evaluate a boolean expression with bitwise & and |. If we use the && or ||, these are conditional, meaning the right side will not be evaluated if the left side already proves the boolean. This is important in case part of the 
+boolean expression involves a function call, which might have side-effects if both sides are not balanced.
+
+From Java language spec:
+
+"15.23. Conditional-And Operator && : The conditional-and operator && is like & (§15.22.2), but evaluates its right-hand operand only if the value of its left-hand operand is true."
