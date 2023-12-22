@@ -1,5 +1,6 @@
 package src.aristoxenus;
 
+import java.lang.IllegalArgumentException;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+
+import src.aristoxenus.Constants.Keywords;
 
 /**
  * A collection of functions pertaining to generating, encoding, and decoding
@@ -101,6 +105,7 @@ public class Nomenclature {
         return equivalents;
     }
 
+
     /**
      * Defines the symbols that the program recognizes as legal chord names.
      * 
@@ -115,6 +120,7 @@ public class Nomenclature {
         }
         return names;
     }
+
 
     /**
      * Reduce a note name with accidentals to a single alphabetic symbol.
@@ -150,6 +156,7 @@ public class Nomenclature {
         }
     }
 
+
     /**
      * Return the binomial form of a given note name with up to 12 
      * accidentals.
@@ -173,6 +180,7 @@ public class Nomenclature {
             return decoder.get(note_name);
         }
     }
+
 
     /**
      * Return a note with the same enharmonic value as the given note,
@@ -215,7 +223,8 @@ public class Nomenclature {
      *                              (Overload default is 0).
      * @return                      A scientific chromatic scale in the given style.
      */
-    public static List<String> scientific_octave(List<String> accidental_notes, int octave){
+    public static List<String> scientific_octave(List<String> accidental_notes, 
+                                                 int octave){
 
         return chromatic(accidental_notes)
             .stream()
@@ -227,4 +236,81 @@ public class Nomenclature {
     }
 
 
+    /**
+     * Return a full range of scientific notation for a given type of
+     * [accidental_notes].
+     */
+    public static List<String> scientific_range(List<String> accidental_notes){
+        List<String> full_range = new ArrayList<String>();
+        for (int octave=0; octave<Constants.NUMBER_OF_OCTAVES; octave++){
+            List<String> new_octave = scientific_octave(accidental_notes, octave);
+            full_range.addAll(new_octave);
+        }
+        return full_range;
+    }
+    /**
+     * Return a full range of scientific notation with binomial accidentals.
+     */
+    public static List<String> scientific_range(){
+        List<String> full_range = new ArrayList<String>();
+        for (int octave=0; octave<Constants.NUMBER_OF_OCTAVES; octave++){
+            List<String> new_octave = scientific_octave(Constants.BINOMIALS, octave);
+            full_range.addAll(new_octave);
+        }
+        return full_range;
+    }
+
+
+
+    /**
+     * Encode a given [note_value] with an enharmonically-equivalent
+     * [note_name], assuming that the new name occupies a relative 
+     * [position] ("higher" or "lower") compared to the old name.
+     */
+    public static String encode_scientific_enharmonic(String note_value, 
+                                                      String note_name, 
+                                                      String position){
+        List<String> accidentals;
+        if (scientific_range(Constants.SHARPS).contains(note_value)){
+            accidentals = Constants.SHARPS;
+        }
+        else if (scientific_range(Constants.FLATS).contains(note_value)){
+            accidentals = Constants.FLATS;
+        }
+        else {
+            throw new IllegalArgumentException("Cannot resolve a binomial note name.");
+        }
+
+        int index = scientific_range(accidentals).indexOf(note_value);
+        List<String> octave = new ArrayList<String>();
+        String symbol = "";
+
+        switch (position){
+            case Keywords.BELOW -> {
+                index++; // so that last note (=target) is included
+                octave = scientific_range().subList(index-Constants.TONES, index); 
+                octave = octave.reversed();
+                symbol = Constants.SHARP_SYMBOL;
+            }
+            case Keywords.ABOVE -> {
+                octave = scientific_range().subList(index, index+Constants.TONES); 
+                symbol = Constants.FLAT_SYMBOL;
+            }
+            default -> {throw new IllegalArgumentException(
+                String.format("Unknown position argument %s", position));
+            }
+        }
+
+        for (int i=0; i<octave.size(); i++){
+            String note = octave.get(i);
+            if (note.substring(0, note.length()-1).equals(note_name)){
+                return note.substring(0, note.length()-1) + symbol.repeat(i) + note.substring(note.length()-1, note.length());
+            }
+        }
+        throw new IllegalArgumentException(String.format("Unable to resolve name %s", note_name));
+    }
+
+
+
+    
 }

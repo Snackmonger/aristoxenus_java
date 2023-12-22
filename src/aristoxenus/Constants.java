@@ -160,6 +160,12 @@ public class Constants {
         public final static String DUODECIMAL= "duodecimal";
     }
 
+    public final class Keywords{
+        public final static String BELOW = "below";
+        public final static String ABOVE = "above";
+
+    }
+
 
     // Nomenclature constants generated from precursor constants.
     public static final List<String> NATURALS = Arrays.asList(
