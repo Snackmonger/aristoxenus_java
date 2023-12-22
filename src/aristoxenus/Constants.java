@@ -173,7 +173,6 @@ public class Constants {
     }
 
 
-
     // Nomenclature constants generated from precursor constants.
     public static final List<String> NATURALS = Arrays.asList(
         (Constants.ALPHABETIC_PRECURSOR.substring(2) + 
