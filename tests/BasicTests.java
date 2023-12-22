@@ -1,9 +1,11 @@
 package tests;
-import java.math.BigInteger;
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.List;
 
-import src.aristoxenus.Bitwise;
 import src.aristoxenus.IntervalBase;
+
+
+
 import src.aristoxenus.Constants;
 import src.aristoxenus.Constants.IntervalValues;
 import src.aristoxenus.Nomenclature;
@@ -25,7 +27,10 @@ public class BasicTests {
         //  System.out.println("\n");
         //  test_conversions();
         //  System.out.println("\n");
-        test_bitwise();
+        // test_bitwise();
+
+        String z = Nomenclature.encode_scientific_enharmonic("A4", "G", "below");
+        System.out.println(z);
     }
 
     /**
@@ -73,44 +78,43 @@ public class BasicTests {
 
     public static void test_bitwise(){
         
-        // System.out.println("\nExpect DITONE | DIAPENTE = 145, actual =");
-        // System.out.println(IntervalValues.DITONE | IntervalValues.DIAPENTE);
-        // System.out.println("\nExpect DITONE | DIAPENTE = 145, actual =");
-        // System.out.println(Integer.toBinaryString(IntervalValues.DITONE | IntervalValues.DIAPENTE));
+        System.out.println(String.format(
+            "\nExpect DITONE = 17 (%s), binary = 10001 (%s).", 
+            IntervalValues.DITONE, 
+            Integer.toBinaryString(IntervalValues.DITONE)
+        ));
 
-        // System.out.println("\nExpect HEMIOLION | DIAPENTE = 137");
-        // System.out.println(IntervalValues.HEMIOLION | IntervalValues.DIAPENTE);
+        System.out.println(String.format(
+            "\nExpect DITONE | DIAPENTE = 145 (%s), binary = 10010001 (%s).", 
+            IntervalValues.DITONE | IntervalValues.DIAPENTE,
+            Integer.toBinaryString(IntervalValues.DITONE | IntervalValues.DIAPENTE)
+        ));
 
-        // System.out.println("\nExpect ~DITONE = 14 or ");
-        // System.out.println(~IntervalValues.DITONE);
+        IntervalBase starting_value = new IntervalBase(IntervalValues.DITONE | IntervalValues.DIAPENTE | IntervalValues.DIAPASON);
+        System.out.println(String.format(
+            "\nExpect DITONE | DIAPENTE | DIAPASON = 4241 (%s), binary = 1000010010001 (%s)", 
+            starting_value, 
+            starting_value.toBinaryString()));
 
-        // System.out.println(Integer.toBinaryString(~IntervalValues.DITONE));
-        // System.out.println(Integer.toBinaryString(~IntervalValues.DITONE + 1));
-        // System.out.println(Integer.toBinaryString((IntervalValues.DITONE) & (~IntervalValues.DITONE + 1)));
-
-        BigInteger x = BigInteger.valueOf(IntervalValues.DITONE|IntervalValues.DIAPENTE|IntervalValues.DIAPASON);
-        
-        IntervalBase yamahama = new IntervalBase(x);
-
-        yamahama.shiftLeft(4);
-        yamahama = yamahama.add(1);
-        System.out.println(yamahama.toBinaryString());
-        for (IntervalBase interval : yamahama){
-            System.out.println(interval);
-            System.out.println(interval.toBinaryString());
-
-            try {
-            TimeUnit.SECONDS.sleep(1);
-            }
-            catch (InterruptedException e){}
+        System.out.println("Test interval permutations for 4241...");
+        List<IntervalBase> newlist = new ArrayList<IntervalBase>();
+        for (IntervalBase interval:starting_value){
+            System.out.println(String.format("Decimal: %s ", interval));
+            System.out.println(String.format("Binary: %s", interval.toBinaryString()));
+            newlist.add(interval);
         }
+        System.out.println(String.format("Collected the intervals in a list: %s", newlist.toString()));
+        System.out.println("Attempting to reduce intervals with bitwise OR...");
+        IntervalBase compounded_number = IntervalBase.reduce(newlist);
+        System.out.println(
+            String.format(
+                "Result is %s: %s", 
+                compounded_number, compounded_number.equals(starting_value) 
+                ? "Success!" : "Failure!"
+            )
+        );
 
-
-
-        // System.out.println("\nTesting validate_interval(0b1000) (expect false) ");
-        // System.out.println(Bitwise.validate_interval(BigInteger.valueOf(0b1000)));
-        // System.out.println("\nTesting validate_interval(0b1001) (expect true) ");
-        // System.out.println(Bitwise.validate_interval(BigInteger.valueOf(0b1001)));
+        
     }
 
 

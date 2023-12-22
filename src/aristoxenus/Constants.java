@@ -160,6 +160,19 @@ public class Constants {
         public final static String DUODECIMAL= "duodecimal";
     }
 
+    public final class Keywords{
+        public final static String BELOW = "below";
+        public final static String ABOVE = "above";
+
+    }
+
+    public final class ChordVoicingNames{
+        public final static String DROP_2 = "drop_2";
+        public final static String DROP_3 = "drop_3";
+        public final static String DROP_2_AND_4 = "drop_2_and_4";
+    }
+
+
 
     // Nomenclature constants generated from precursor constants.
     public static final List<String> NATURALS = Arrays.asList(
