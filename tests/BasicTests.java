@@ -1,5 +1,6 @@
 package tests;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import src.aristoxenus.IntervalBase;
@@ -7,8 +8,10 @@ import src.aristoxenus.IntervalBase;
 
 
 import src.aristoxenus.Constants;
+import src.aristoxenus.Functions;
 import src.aristoxenus.Constants.IntervalValues;
 import src.aristoxenus.Nomenclature;
+import src.aristoxenus.Temperament;
 
 
 public class BasicTests {
@@ -29,8 +32,19 @@ public class BasicTests {
         //  System.out.println("\n");
         // test_bitwise();
 
-        String z = Nomenclature.encode_scientific_enharmonic("A4", "G", "below");
-        System.out.println(z);
+        List<String> cha = new ArrayList<String>();
+        cha.add("a");
+        cha.add("b");
+        cha.add("c");
+        cha.add("d");
+        cha.add("e");
+        cha.add("f");
+
+        List<String> bla = Functions.rotateList(cha, "b");
+        System.out.println(bla);
+        System.out.println(cha);
+
+        System.out.println(Functions.repeatList(cha, 4));
     }
 
     /**
@@ -66,11 +80,11 @@ public class BasicTests {
         System.out.println("\nChromatic scale, flat: ");
         System.out.println(Nomenclature.chromatic(Constants.FLATS));
         System.out.println("\nEnharmonic decoder map: ");
-        System.out.println(Nomenclature.enharmonic_decoder());
+        System.out.println(Nomenclature.enharmonicDecoder());
         System.out.println("\nChromatic scale, binomial, scientific octave=0: ");
-        System.out.println(Nomenclature.scientific_octave(Constants.BINOMIALS));
+        System.out.println(Nomenclature.scientificOctave(Constants.BINOMIALS));
         System.out.println("\nChromatic scale, sharp, scientific octave=4: ");
-        System.out.println(Nomenclature.scientific_octave(Constants.SHARPS, 4));
+        System.out.println(Nomenclature.scientificOctave(Constants.SHARPS, 4));
 
     }
 
