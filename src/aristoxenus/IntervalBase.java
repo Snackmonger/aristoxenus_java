@@ -19,7 +19,7 @@ import java.util.List;
  * zero.
  * 
  * The class can be used as an iterator, and it will return instances
- * with the value of the individual bits of its starting number.
+ * with the value of the individual flipped bits of its starting number.
  */
 public class IntervalBase implements Iterable<IntervalBase>{
     private BigInteger value;
