@@ -58,6 +58,7 @@ public class Constants {
         public final static String AEOLIAN = "aeolian";
         public final static String LOCRIAN = "locrian";
     }
+
     public final class IntervalNames{
         public final static String HEMITONE = "hemitone";
         public final static String TONE = "tone";
@@ -72,6 +73,7 @@ public class Constants {
         public final static String COMPOUND_DITONE = "compound_ditone";
         public final static String DIAPASON = "diapason";
     }
+
     public final class IntervalQualities{
         public final static String NATURAL = "natural";
         public final static String MINOR = "minor";
@@ -80,6 +82,7 @@ public class Constants {
         public final static String AUGMENTED = "augmented";
         public final static String PERFECT = "perfect";
     }
+
     public final class OrdinalNumbers{
         public final static String TONIC = "first";
         public final static String SECOND = "second";
@@ -97,6 +100,7 @@ public class Constants {
         public final static String FOURTEENTH = "fourteenth";
         public final static String FIFTEENTH = "fifteenth";
     }
+
     public final class CardinalNumbers{
         public final static String ONE= "one";
         public final static String TWO= "two";
@@ -114,6 +118,7 @@ public class Constants {
         public final static String FOURTEEN= "fourteen";
         public final static String FIFTEEN= "fifteen";
     }
+
     public final class TupleNumerationNames{
         public final static String SINGLE= "single";
         public final static String DOUBLE= "double";
@@ -131,6 +136,7 @@ public class Constants {
         public final static String QUATTUORDECUPLE= "quattuordecuple";
         public final static String QUINDECUPLE= "quindecuple";
     }
+
     public final class TonalNumerationNames{
         public final static String MONOTONIC= "monotonic";
         public final static String DITONIC= "ditonic";
@@ -145,6 +151,7 @@ public class Constants {
         public final static String HENDECATONIC= "hendecatonic";
         public final static String DUODECATONIC= "duodecatonic";
     }
+
     public final class BasalNumerationNames{
         public final static String PRIMAL= "primal";
         public final static String SECUNDAL= "secundal";
@@ -188,30 +195,25 @@ public class Constants {
     public static final List<String> SHARPS = NATURALS.stream()
         .filter(i -> ! HALFSTEPS.containsKey(i))
         .map(i -> i + SHARP_SYMBOL)
-        .collect(Collectors.toList())
-    ;
+        .collect(Collectors.toList());
 
     public static final List<String> FLATS = NATURALS.stream()
         .filter(i -> ! HALFSTEPS.containsValue(i))
         .map(i -> i + FLAT_SYMBOL)
-        .collect(Collectors.toList())
-    ;
+        .collect(Collectors.toList());
 
     public static final List<String> ACCIDENTAL_NOTES = Stream
         .concat(SHARPS.parallelStream(), FLATS.parallelStream())
-        .collect(Collectors.toList())
-    ;
+        .collect(Collectors.toList());
 
     public static final List<String> BINOMIALS = SHARPS.stream()
         .map(i -> i + BINOMIAL_DIVIDER_SYMBOL + FLATS.get(SHARPS.indexOf(i)))
-        .collect(Collectors.toList())
-    ;
+        .collect(Collectors.toList());
 
     public static final List<List<String>> ACCIDENTAL_TYPES = List.of(
         SHARPS, 
         FLATS, 
-        BINOMIALS
-    );
+        BINOMIALS);
 
         
 }
