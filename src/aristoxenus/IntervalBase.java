@@ -38,15 +38,19 @@ public class IntervalBase implements Iterable<IntervalBase>{
 
     /**Return the number of bits in the number. */
     public int bitLength(){return this.value.bitLength();}
+
     /**Return the number of flipped bits in the number. */
     public int bitCount(){return this.value.bitCount();}
+
     /**Return the binary representation of the number as a string. */
     public String toBinaryString(){return this.value.toString(2);}
+
     /**Return the decimal representation of the number as a string. */
     public String toString(){return this.value.toString();}
 
     /**Shift the bits left [n] times. */
     public IntervalBase shiftLeft(int n){return new IntervalBase(this.value.shiftLeft(n));}
+    
     /**Shift the bits right [n] times. */
     public IntervalBase shiftRIght(int n){return new IntervalBase(this.value.shiftRight(n));}
     

@@ -7,8 +7,6 @@ import java.util.List;
  * Bunch of miscellaneous functions.
  */
 public class Functions {
-
-
     /**
      * Return a rotated form of a given [list] so that the sequence remains 
      * the same, but the given [new_first_member] now occupies index 0. 
@@ -26,7 +24,6 @@ public class Functions {
         Collections.rotate(list, modifier * list.indexOf(new_first_member));
         return list;
     }
-
 
     /**
      * Return a list made up of [list] repeated [n] times.
@@ -63,7 +60,4 @@ public class Functions {
             return count ;
     }
 
-
-
-    
 }
